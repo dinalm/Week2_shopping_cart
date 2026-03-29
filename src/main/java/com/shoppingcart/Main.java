@@ -15,7 +15,7 @@ public class Main extends Application {
                 Objects.requireNonNull(getClass().getResource("/com/shoppingcart/main.fxml"))
         );
         Scene scene = new Scene(loader.load(), 500, 550);
-        stage.setTitle("Dinal / Shopping Cart App");
+        stage.setTitle("Dinal Maha Vidanelage / Shopping Cart App");
         stage.setScene(scene);
         stage.show();
     }
