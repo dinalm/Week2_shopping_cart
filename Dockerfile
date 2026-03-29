@@ -14,8 +14,4 @@ RUN mkdir -p /javafx-sdk \
 
 COPY target/ShoppingCartApp-1.0-SNAPSHOT.jar app.jar
 
-ENTRYPOINT ["java", \
-            "-Dprism.order=sw", \
-            "--module-path", "/javafx-sdk/lib", \
-            "--add-modules", "javafx.controls,javafx.fxml", \
-            "-jar", "app.jar"]
+CMD ["java", "-Dprism.order=sw", "--module-path", "/javafx-sdk/lib", "--add-modules", "javafx.controls,javafx.fxml,javafx.swing", "-jar", "app.jar"]
