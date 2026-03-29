@@ -24,14 +24,14 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building the project...'
-                sh 'mvn clean package -DskipTests'
+                bat 'mvn clean package -DskipTests'
             }
         }
 
         stage('Test') {
             steps {
                 echo 'Running unit tests...'
-                sh 'mvn test'
+                bat 'mvn test'
             }
             post {
                 always {
@@ -43,7 +43,7 @@ pipeline {
         stage('JaCoCo Coverage Report') {
             steps {
                 echo 'Generating JaCoCo coverage report...'
-                sh 'mvn jacoco:report'
+                bat 'mvn jacoco:report'
             }
             post {
                 always {
@@ -59,16 +59,16 @@ pipeline {
         stage('Docker Build') {
             steps {
                 echo 'Building Docker image...'
-                sh "docker build -t ${IMAGE_NAME}:${IMAGE_TAG} ."
+                bat "docker build -t ${IMAGE_NAME}:${IMAGE_TAG} ."
             }
         }
 
         stage('Docker Push') {
             steps {
                 echo 'Pushing Docker image to Docker Hub...'
-                sh """
-                    echo ${DOCKERHUB_CREDENTIALS_PSW} | docker login -u ${DOCKERHUB_CREDENTIALS_USR} --password-stdin
-                    docker push ${IMAGE_NAME}:${IMAGE_TAG}
+                bat """
+                    echo %DOCKERHUB_CREDENTIALS_PSW% | docker login -u %DOCKERHUB_CREDENTIALS_USR% --password-stdin
+                    docker push %IMAGE_NAME%:%IMAGE_TAG%
                 """
             }
         }
@@ -83,7 +83,7 @@ pipeline {
             echo 'Pipeline failed. Check the logs.'
         }
         always {
-            sh 'docker logout'
+            bat 'docker logout'
         }
     }
 }
