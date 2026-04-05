@@ -45,11 +45,10 @@ public class MainController {
         loadBundle(locale);
         applyBundle();
 
-        // RTL support for Arabic
         if (selected.equals("Arabic")) {
-            itemsContainer.setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
+            languageComboBox.getScene().getRoot().setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
         } else {
-            itemsContainer.setNodeOrientation(NodeOrientation.LEFT_TO_RIGHT);
+            languageComboBox.getScene().getRoot().setNodeOrientation(NodeOrientation.LEFT_TO_RIGHT);
         }
     }
 
